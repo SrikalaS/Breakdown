@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relative"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:text="name"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/useremail"
+            android:text="email"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/username"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userphonenum"
+            android:text="phonenum"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/useremail"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/uservehcileno"
+            android:text="vehiclono"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/userphonenum"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userproblem"
+            android:text="problem"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/uservehcileno"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userlatitute"
+            android:text="latitude"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/userproblem"
+            android:layout_marginLeft="10dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userlongitude"
+            android:text="longitude"
+            android:textStyle="italic"
+            android:textSize="16sp"
+            android:textColor="#000000"
+
+            android:layout_below="@id/userlatitute"
+            android:layout_marginLeft="10dp"></TextView>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
