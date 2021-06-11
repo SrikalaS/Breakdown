@@ -14,16 +14,17 @@ import java.util.ArrayList;
 
 public class Mechanic_Page extends AppCompatActivity {
 ListView listView;
+String a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mechanic__page);
         listView=findViewById(R.id.listview1);
         ArrayList<String> s=new ArrayList<>();
-        s.add("Search for mechanic");
+        s.add("Search for user");
         s.add("View Requests");
-        s.add("View Mechanic Details");
-        s.add("Service  Provider Manual");
+        s.add("View User Details");
+        s.add("View Message Requests");
         ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,s);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -34,6 +35,20 @@ ListView listView;
                 if(k.equals("View Requests"))
                 {
                     Intent it=new Intent(Mechanic_Page.this,ViewRequest.class);
+                    a=getIntent().getStringExtra("name");
+                    it.putExtra("username",a);
+                    startActivity(it);
+                }
+                else if(k.equals("View User Details"))
+                {
+                    Intent it=new Intent(Mechanic_Page.this,View_Mechanic.class);
+                    startActivity(it);
+                }
+                else if(k.equals("View Message Requests"))
+                {
+                    Intent it=new Intent(Mechanic_Page.this,Message_Request.class);
+                    a=getIntent().getStringExtra("name");
+                    it.putExtra("username",a);
                     startActivity(it);
                 }
             }

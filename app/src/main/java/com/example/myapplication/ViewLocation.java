@@ -30,10 +30,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static java.lang.Math.acos;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 public class ViewLocation extends AppCompatActivity {
     TextView username, phonenum, email, problem, vehicleno, lattitude, longitude;
-    Button getlocation,addrequest;
-    String a,b;
+    Button getlocation, addrequest;
+    String a, b;
     private DatabaseReference problemdetails;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -47,7 +51,7 @@ public class ViewLocation extends AppCompatActivity {
         email = findViewById(R.id.textemail);
         problem = findViewById(R.id.textproblem);
         vehicleno = findViewById(R.id.textvehicleno);
-        addrequest=findViewById(R.id.addrequestbtn);
+        addrequest = findViewById(R.id.addrequestbtn);
         lattitude = findViewById(R.id.latitude);
         longitude = findViewById(R.id.longitude);
         getlocation = findViewById(R.id.getlocation);
@@ -56,17 +60,25 @@ public class ViewLocation extends AppCompatActivity {
         email.setText(getIntent().getStringExtra("email"));
         problem.setText(getIntent().getStringExtra("problem"));
         vehicleno.setText(getIntent().getStringExtra("vehicleno"));
-        problemdetails= FirebaseDatabase.getInstance().getReference().child("problem_details");
+        problemdetails = FirebaseDatabase.getInstance().getReference().child("problem_details");
         addrequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String x=username.getText().toString();
-                String y=vehicleno.getText().toString();
-                String c=phonenum.getText().toString();
-                String d=problem.getText().toString();
-                String e=email.getText().toString();
-                Problem_Details k=new Problem_Details(x,c,e,d,y,a,b);
+                String x = username.getText().toString();
+                String y = vehicleno.getText().toString();
+                String c = phonenum.getText().toString();
+                String d = problem.getText().toString();
+                String e = email.getText().toString();
+                Problem_Details k = new Problem_Details(x, c, e, d, y, a, b);
                 problemdetails.push().setValue(k);
+                Toast.makeText(getApplicationContext(), "Request Added", Toast.LENGTH_LONG).show();
+                Intent it=new Intent(ViewLocation.this,Send_Msg.class);
+                String j=getIntent().getStringExtra("viewuser");
+                it.putExtra("view",j);
+                it.putExtra("problem",d);
+                startActivity(it);
+
+
 
             }
         });
@@ -76,9 +88,8 @@ public class ViewLocation extends AppCompatActivity {
             public void onClick(View view) {
                 if (ActivityCompat.checkSelfPermission(ViewLocation.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(ViewLocation.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     getCurrentLocation();
-                }
-                else {
-                    ActivityCompat.requestPermissions(ViewLocation.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100);
+                } else {
+                    ActivityCompat.requestPermissions(ViewLocation.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                 }
             }
         });
@@ -88,12 +99,10 @@ public class ViewLocation extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==100 && grantResults.length>0 && (grantResults[0]+grantResults[1]==PackageManager.PERMISSION_GRANTED))
-        {
+        if (requestCode == 100 && grantResults.length > 0 && (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
             getCurrentLocation();
-        }
-        else {
-            Toast.makeText(getApplicationContext(),"Permission denied",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -116,18 +125,19 @@ public class ViewLocation extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Location> task) {
                     Location location = task.getResult();
                     if (location != null) {
-                        a=String.valueOf(location.getLatitude());
-                        b=String.valueOf(location.getLongitude());
+                        a = String.valueOf(location.getLatitude());
+                        b = String.valueOf(location.getLongitude());
                         lattitude.setText(String.valueOf(location.getLatitude()));
                         longitude.setText(String.valueOf(location.getLongitude()));
+
                     } else {
                         LocationRequest locationRequest = new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).setInterval(10000).setFastestInterval(1000).setNumUpdates(1);
                         LocationCallback locationCallback = new LocationCallback() {
                             @Override
                             public void onLocationResult(LocationResult locationResult) {
                                 Location location1 = locationResult.getLastLocation();
-                                a=String.valueOf(location.getLatitude());
-                                b=String.valueOf(location.getLongitude());
+                                a = String.valueOf(location.getLatitude());
+                                b = String.valueOf(location.getLongitude());
                                 lattitude.setText(String.valueOf(location1.getLatitude()));
                                 longitude.setText(String.valueOf(location1.getLongitude()));
                             }
@@ -146,12 +156,8 @@ public class ViewLocation extends AppCompatActivity {
                     }
                 }
             });
-        }
-        else
-        {
+        } else {
             startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
-
-
 }

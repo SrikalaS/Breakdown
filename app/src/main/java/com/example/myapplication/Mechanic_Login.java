@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,7 +42,12 @@ public class Mechanic_Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Intent it = new Intent(Mechanic_Login.this,Mechanic_Page.class);
+                            it.putExtra("name",a);
                             startActivity(it);
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Enter valid credentials,if new user register",Toast.LENGTH_LONG).show();
                         }
 
                     }

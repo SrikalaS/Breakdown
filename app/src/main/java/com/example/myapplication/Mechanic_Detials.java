@@ -1,11 +1,12 @@
 package com.example.myapplication;
 
 public class Mechanic_Detials {
-    String username,password,location,phonenum,vehicleno,imageurl,email;
-    public Mechanic_Detials()
-    {}
+    String username, password, location, phonenum, vehicleno, imageurl, email, latitude, longitude;
 
-    public Mechanic_Detials(String username, String password, String location, String phonenum, String vehicleno, String imageurl, String email) {
+    public Mechanic_Detials() {
+    }
+
+    public Mechanic_Detials(String username, String password, String location, String phonenum, String vehicleno, String imageurl, String email, String latitude, String longitude) {
         this.username = username;
         this.password = password;
         this.location = location;
@@ -13,6 +14,8 @@ public class Mechanic_Detials {
         this.vehicleno = vehicleno;
         this.imageurl = imageurl;
         this.email = email;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getUsername() {
@@ -69,5 +72,21 @@ public class Mechanic_Detials {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

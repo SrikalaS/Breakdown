@@ -22,9 +22,8 @@ public class Srikala extends AppCompatActivity {
         setContentView(R.layout.activity_srikala);
         listView=findViewById(R.id.listview);
         ArrayList<String> s=new ArrayList<>();
-        s.add("Search for mechanic");
         s.add("Add Requests");
-        s.add("View Mechanic Details");
+        s.add("View mechanic Details");
         s.add("Service  Provider Manual");
         ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,s);
         listView.setAdapter(arrayAdapter);
@@ -36,6 +35,19 @@ public class Srikala extends AppCompatActivity {
                 if(k.equals("Add Requests"))
                 {
                     Intent it=new Intent(Srikala.this,AddRequest.class);
+                    String x=getIntent().getStringExtra("user");
+                    it.putExtra("viewUser",x);
+                    startActivity(it);
+                }
+
+                else if(k.equals("View mechanic Details"))
+                {
+                    Intent it=new Intent(Srikala.this,MainPage.class);
+                    startActivity(it);
+                }
+                else if(k.equals("Service  Provider Manual"))
+                {
+                    Intent it=new Intent(Srikala.this,Service.class);
                     startActivity(it);
                 }
             }

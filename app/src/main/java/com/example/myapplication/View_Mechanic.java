@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,32 +18,31 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainPage extends AppCompatActivity {
+public class View_Mechanic extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private ImageAdapter mAdapter;
+    private ViewMechanicAdapter mAdapter;
     private ProgressBar mProgressCircle;
     private DatabaseReference mDatabaseRef;
-    private List<Mechanic_Detials> mUploads;
-
+    private DatabaseReference databaseReference;
+    private List<User_details> mUploads;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
-        mRecyclerView = findViewById(R.id.recycler_view);
+        setContentView(R.layout.activity_view__mechanic);
+        mRecyclerView = findViewById(R.id.recycler_view1);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mProgressCircle = findViewById(R.id.progress_circle);
+        mProgressCircle = findViewById(R.id.progress_circle1);
         mUploads = new ArrayList<>();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("mechanic");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("user");
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-                    Mechanic_Detials upload = postSnapshot.getValue(Mechanic_Detials.class);
+                    User_details upload = postSnapshot.getValue(User_details.class);
                     mUploads.add(upload);
                 }
-                mAdapter = new ImageAdapter(MainPage.this, mUploads);
+                mAdapter = new ViewMechanicAdapter(View_Mechanic.this, mUploads);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
@@ -53,9 +51,9 @@ public class MainPage extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainPage.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(View_Mechanic.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
     }
-    }
+}

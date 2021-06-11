@@ -28,9 +28,7 @@ public class AddRequest extends AppCompatActivity
         setContentView(R.layout.activity_add_request);
         vehicleno=findViewById(R.id.addrequest);
         add=findViewById(R.id.add);
-
         problemno=findViewById(R.id.problem);
-
         add.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
@@ -47,6 +45,8 @@ public class AddRequest extends AppCompatActivity
                                 String b=data.child("phonenum").getValue().toString();
                                 String c=data.child("email").getValue().toString();
                                 Intent it=new Intent(AddRequest.this, ViewLocation.class);
+                                String z=getIntent().getStringExtra("viewUser");
+                                it.putExtra("viewuser",z);
                                 it.putExtra("username",a);
                                 it.putExtra("phonenum",b);
                                 it.putExtra("email",c);

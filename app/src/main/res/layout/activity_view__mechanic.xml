@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewRequest">
+    tools:context=".View_Mechanic">
+    <ProgressBar
+        android:id="@+id/progress_circle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:ignore="MissingConstraints" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="1dp"
-        android:id="@+id/list"/>
-
-
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

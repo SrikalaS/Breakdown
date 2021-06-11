@@ -48,7 +48,12 @@ public class User_Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Intent it = new Intent(User_Login.this, Srikala.class);
+                            it.putExtra("user",a);
                             startActivity(it);
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Enter valid credentials,if new user register",Toast.LENGTH_LONG).show();
                         }
 
                     }
