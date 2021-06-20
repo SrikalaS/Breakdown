@@ -88,7 +88,7 @@ public class ViewRequest extends AppCompatActivity {
                     if(m<10)
                     {
                         String h=data.child("username").getValue().toString();
-                        arrayList.add(h);
+                        arrayList.add(h+" problem: "+data.child("problem").getValue().toString());
                         arrayAdapter.notifyDataSetChanged();
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override

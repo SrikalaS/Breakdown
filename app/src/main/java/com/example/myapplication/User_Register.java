@@ -170,7 +170,6 @@ public class User_Register extends AppCompatActivity {
                 String b=vehicleno.getText().toString();
                 String c=phoennum.getText().toString();
                 String d=password.getText().toString();
-                String e=location.getText().toString();
                 String f=email.getText().toString();
                 firebaseAuth.fetchSignInMethodsForEmail(f).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
@@ -178,12 +177,14 @@ public class User_Register extends AppCompatActivity {
                         boolean check=!task.getResult().getSignInMethods().isEmpty();
                         if(!check)
                         {
-                            User_details p=new User_details(a,d,e,c,vehicletype,b,k,f,x,y);
+                            User_details p=new User_details(a,d,c,vehicletype,b,k,f,x,y);
                             user.push().setValue(p);
                             firebaseAuth.createUserWithEmailAndPassword(f,d).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     Toast.makeText(getApplicationContext(),"Registered success",Toast.LENGTH_LONG).show();
+                                    Intent it=new Intent(User_Register.this,User_Login.class);
+                                    startActivity(it);
                                 }
                             });
 

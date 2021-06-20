@@ -165,7 +165,7 @@ public class Mechanic_Register extends AppCompatActivity {
                         boolean check=!task.getResult().getSignInMethods().isEmpty();
                         if(!check)
                         {
-                            Mechanic_Detials p=new Mechanic_Detials(a,d,e,c,b,m,f,x,y);
+                            Mechanic_Detials p=new Mechanic_Detials(a,d,c,b,m,f,x,y);
                             mechanic.push().setValue(p);
                             firebaseAuth.createUserWithEmailAndPassword(f,d).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

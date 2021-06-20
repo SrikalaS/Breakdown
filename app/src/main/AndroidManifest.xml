@@ -24,9 +24,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Service"></activity>
-        <activity android:name=".Accept" />
-        <activity android:name=".Message_Request" />
+        <activity android:name=".ProvideRating"></activity>
+        <activity android:name=".Feedback" />
+        <activity android:name=".Pending_Profile" />
+        <activity android:name=".View_Pending" />
+        <activity android:name=".Service" />
         <activity android:name=".Message" />
         <activity android:name=".Send_Msg" />
         <activity android:name=".View_Mechanic" />

@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Message_Request"
-    >
+    tools:context=".View_Pending">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="1dp"
-        android:id="@+id/msg"/>
-
+        android:id="@+id/pendinglist"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

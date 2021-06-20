@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile_Activity">
+    tools:context=".Pending_Profile">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relative1"
         android:padding="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileusername"
+            android:id="@+id/pendingprofileusername"
             android:text="name"
             android:textStyle="italic"
             android:textSize="16sp"
@@ -25,68 +24,68 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuseremail"
+            android:id="@+id/pendingprofileuseremail"
             android:text="email"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileusername"
+            android:layout_below="@id/pendingprofileusername"
             android:layout_marginLeft="10dp"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuserphonenum"
+            android:id="@+id/pendingprofileuserphonenum"
             android:text="phonenum"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileuseremail"
+            android:layout_below="@id/pendingprofileuseremail"
             android:layout_marginLeft="10dp"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuservehcileno"
+            android:id="@+id/pendingprofileuservehcileno"
             android:text="vehiclono"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileuserphonenum"
+            android:layout_below="@id/pendingprofileuserphonenum"
             android:layout_marginLeft="10dp"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuserproblem"
+            android:id="@+id/pendingprofileuserproblem"
             android:text="problem"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileuservehcileno"
+            android:layout_below="@id/pendingprofileuservehcileno"
             android:layout_marginLeft="10dp"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuserlatitute"
+            android:id="@+id/pendingprofileuserlatitute"
             android:text="latitude"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileuserproblem"
+            android:layout_below="@id/pendingprofileuserproblem"
             android:layout_marginLeft="10dp"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profileuserlongitude"
+            android:id="@+id/pendingprofileuserlongitude"
             android:text="longitude"
             android:textStyle="italic"
             android:textSize="16sp"
             android:textColor="#000000"
 
-            android:layout_below="@id/profileuserlatitute"
+            android:layout_below="@id/pendingprofileuserlatitute"
             android:layout_marginLeft="10dp"></TextView>
 
         <LinearLayout
@@ -94,25 +93,25 @@
             android:layout_height="wrap_content"
             android:id="@+id/linear"
             android:orientation="vertical"
-            android:layout_below="@+id/profileuserlongitude"
+            android:layout_below="@+id/pendingprofileuserlongitude"
             tools:ignore="MissingConstraints">
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mechaccept"
+                android:id="@+id/pendingaccept"
                 android:text="Accept"
-               />
+                />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mechreject"
+                android:id="@+id/pendingreject"
                 android:text="Reject"
                 android:layout_below="@id/mechaccept"/>
         </LinearLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tarck"
+            android:id="@+id/pendingtarck"
             android:visibility="invisible"
             android:text="Track"
             android:layout_below="@id/linear"/>

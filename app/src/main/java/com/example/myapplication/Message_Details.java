@@ -1,12 +1,13 @@
 package com.example.myapplication;
 
 public class Message_Details {
-    String username,problem,mechanicname;
+    String username,problem,mechanicname,date;
 
-    public Message_Details(String username, String problem, String mechanicname) {
+    public Message_Details(String username, String problem, String mechanicname, String date) {
         this.username = username;
         this.problem = problem;
         this.mechanicname = mechanicname;
+        this.date = date;
     }
 
     public String getUsername() {
@@ -31,5 +32,13 @@ public class Message_Details {
 
     public void setMechanicname(String mechanicname) {
         this.mechanicname = mechanicname;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

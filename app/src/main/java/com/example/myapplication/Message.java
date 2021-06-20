@@ -52,6 +52,7 @@ public class Message extends AppCompatActivity {
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("problem_details");
+        message=FirebaseDatabase.getInstance().getReference().child("message");
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -96,16 +97,15 @@ public class Message extends AppCompatActivity {
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString("user",username.getText().toString());
         editor.putString("emailid",email.getText().toString());
+
         editor.putString("srikalas",h);
         editor.putString("problem",m);
-        Message_Details x=new Message_Details(firebaseUser.getEmail().toString(),m,email.getText().toString());
-        message.push().setValue(x);
 
 
 
         editor.putString("phone",s);
         editor.apply();
-        Log.d("problems",m);
+
 
         smsManager.sendTextMessage(s,null,"request for service "+m,null,null);
         Toast.makeText(getApplicationContext(),"sent successfully",Toast.LENGTH_LONG).show();

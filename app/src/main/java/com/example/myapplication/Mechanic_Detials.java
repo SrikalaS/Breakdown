@@ -1,21 +1,28 @@
 package com.example.myapplication;
 
 public class Mechanic_Detials {
-    String username, password, location, phonenum, vehicleno, imageurl, email, latitude, longitude;
+    String username, password, phonenum, vehicleno, imageurl, email, latitude, longitude,rating;
 
     public Mechanic_Detials() {
     }
 
-    public Mechanic_Detials(String username, String password, String location, String phonenum, String vehicleno, String imageurl, String email, String latitude, String longitude) {
+    public Mechanic_Detials(String username, String password, String phonenum, String vehicleno, String imageurl, String email, String latitude, String longitude) {
         this.username = username;
         this.password = password;
-        this.location = location;
         this.phonenum = phonenum;
         this.vehicleno = vehicleno;
         this.imageurl = imageurl;
         this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getUsername() {
@@ -32,14 +39,6 @@ public class Mechanic_Detials {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getPhonenum() {

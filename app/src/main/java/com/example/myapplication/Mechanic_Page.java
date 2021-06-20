@@ -23,8 +23,9 @@ String a;
         ArrayList<String> s=new ArrayList<>();
         s.add("Search for user");
         s.add("View Requests");
-        s.add("View User Details");
-        s.add("View Message Requests");
+        s.add("View Other Mechanic Details");
+        s.add("View Pending requests");
+
         ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,s);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,18 +40,18 @@ String a;
                     it.putExtra("username",a);
                     startActivity(it);
                 }
-                else if(k.equals("View User Details"))
+                else if(k.equals("View Other Mechanic Details"))
                 {
-                    Intent it=new Intent(Mechanic_Page.this,View_Mechanic.class);
+                    Intent it=new Intent(Mechanic_Page.this,MainPage.class);
                     startActivity(it);
                 }
-                else if(k.equals("View Message Requests"))
+                else if(k.equals("View Pending requests"))
                 {
-                    Intent it=new Intent(Mechanic_Page.this,Message_Request.class);
-                    a=getIntent().getStringExtra("name");
-                    it.putExtra("username",a);
+                    Intent it=new Intent(Mechanic_Page.this,View_Pending.class);
                     startActivity(it);
                 }
+
+
             }
         });
     }

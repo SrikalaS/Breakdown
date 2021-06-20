@@ -25,6 +25,7 @@ public class Srikala extends AppCompatActivity {
         s.add("Add Requests");
         s.add("View mechanic Details");
         s.add("Service  Provider Manual");
+        s.add("Provide rating and feedback");
         ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,s);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,6 +49,11 @@ public class Srikala extends AppCompatActivity {
                 else if(k.equals("Service  Provider Manual"))
                 {
                     Intent it=new Intent(Srikala.this,Service.class);
+                    startActivity(it);
+                }
+                else if(k.equals("Provide rating and feedback"))
+                {
+                    Intent it=new Intent(Srikala.this,Feedback.class);
                     startActivity(it);
                 }
             }

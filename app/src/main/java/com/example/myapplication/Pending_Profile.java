@@ -1,16 +1,12 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,29 +20,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-import java.util.Locale;
-
-public class Profile_Activity extends AppCompatActivity {
-    ;TextView username, phonenum, email, problem, vehicleno, lattitude, longitude;
-    private DatabaseReference mDatabaseRef,databaseReference,database;
+public class Pending_Profile extends AppCompatActivity {
+    TextView username, phonenum, email, problem, vehicleno, lattitude, longitude;
+    private DatabaseReference mDatabaseRef,databaseReference;
     Button track,accept,reject;
     String a,b;
     FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_);
-        username = findViewById(R.id.profileusername);
-        phonenum = findViewById(R.id.profileuserphonenum);
-        email = findViewById(R.id.profileuseremail);
-        problem = findViewById(R.id.profileuserproblem);
-        vehicleno = findViewById(R.id.profileuservehcileno);
-        accept=findViewById(R.id.mechaccept);
-        reject=findViewById(R.id.mechreject);
-        lattitude = findViewById(R.id.profileuserlatitute);
-        longitude = findViewById(R.id.profileuserlongitude);
-        track=findViewById(R.id.tarck);
+        setContentView(R.layout.activity_pending__profile);
+        username = findViewById(R.id.pendingprofileusername);
+        phonenum = findViewById(R.id.pendingprofileuserphonenum);
+        email = findViewById(R.id.pendingprofileuseremail);
+        problem = findViewById(R.id.pendingprofileuserproblem);
+        vehicleno = findViewById(R.id.pendingprofileuservehcileno);
+        accept=findViewById(R.id.pendingaccept);
+        reject=findViewById(R.id.pendingreject);
+        lattitude = findViewById(R.id.pendingprofileuserlatitute);
+        longitude = findViewById(R.id.pendingprofileuserlongitude);
+        track=findViewById(R.id.pendingtarck);
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
 
@@ -59,23 +53,40 @@ public class Profile_Activity extends AppCompatActivity {
         longitude.setText(getIntent().getStringExtra("longitude"));
         a=email.getText().toString();
         b=problem.getText().toString();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("problem_details");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("reject_details");
-        database=FirebaseDatabase.getInstance().getReference().child("message");
-
-
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("problem_details");
         accept.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 track.setVisibility(View.VISIBLE);
                 SmsManager smsManager=SmsManager.getDefault();
                 smsManager.sendTextMessage(phonenum.getText().toString(),null,"accepted for service ",null,null);
                 Toast.makeText(getApplicationContext(),"sent successfully",Toast.LENGTH_LONG).show();
-                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-               Message_Details x=new Message_Details(a,b,firebaseUser.getEmail().toString(),date);
-               database.push().setValue(x);
                 mDatabaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            String m=data.child("email").getValue().toString();
+                            String n=data.child("problem").getValue().toString();
+                            if(a.equals(m) && b.equals(n))
+                            {
+                                data.getRef().removeValue();
+
+
+
+
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot data : snapshot.getChildren()) {
@@ -103,25 +114,6 @@ public class Profile_Activity extends AppCompatActivity {
 
             }
         });
-
-        reject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String q=username.getText().toString();
-                String w=email.getText().toString();
-                String e=phonenum.getText().toString();
-                String r=vehicleno.getText().toString();
-                String t=problem.getText().toString();
-                String i=lattitude.getText().toString();
-                String o=longitude.getText().toString();
-                String k=firebaseUser.getEmail().toString();
-                Reject_details h=new Reject_details(q,e,w,r,t,i,o,k);
-                databaseReference.push().setValue(h);
-                SmsManager smsManager=SmsManager.getDefault();
-                smsManager.sendTextMessage(phonenum.getText().toString(),null,"accepted for service ",null,null);
-                Toast.makeText(getApplicationContext(),"sent successfully",Toast.LENGTH_LONG).show();
-            }
-        });
         track.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +126,5 @@ public class Profile_Activity extends AppCompatActivity {
 
             }
         });
-
-
     }
 }
